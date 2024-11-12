@@ -9,15 +9,19 @@ import androidx.core.view.WindowInsetsCompat
 class MainActivity : AppCompatActivity() {
     companion object {
         const val moneda = "COL"
-    }
 
+    }
     var saldo: Float = 300.54f
     var sueldo: Float = 764.82f
+    var entero: Int = 12
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        val fecha = "10/06/1991"
+
+        val fecha = "01/06/1991"
         var nombre = "jota"
         var saludo = "HOLA" + nombre
         var vip: Boolean = false
@@ -26,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         }
         if (vip == true) saludo += "Te queremos mucho"
         else saludo += "Quieres ser vip? paga la cuota"
+        var dia = fecha.subSequence(0, 2).toString().toInt()
+        if (dia == 1) ingresar_sueldo()
 
         var mes = fecha.subSequence(3, 5).toString().toInt()
         when (mes) {
@@ -41,13 +47,25 @@ class MainActivity : AppCompatActivity() {
         println(saludo)
         var PIN: Int = 1234
         var Intentos: Int = 0
-        var ClaveIngresada: Int = 1232
+        var ClaveIngresada: Int = 1233
         do {
             println("Ingrese el PIN: ")
             println("Clave Ingresada: + ${ClaveIngresada++}")
             Intentos++
-        } while (Intentos < 3  && ClaveIngresada != PIN)
+        } while (Intentos < 3 && ClaveIngresada != PIN)
 
+        if (Intentos == 3) println("Tarjeta Bloqueada")
+
+        mostrar_saldo()
+    }
+
+    fun mostrar_saldo(){
+        println("Tienes $saldo $moneda")
+    }
+    fun ingresar_sueldo(){
+        saldo += sueldo
+        println("Se ha ingresado tu sueldo de $sueldo $moneda")
+        mostrar_saldo()
     }
 }
 
