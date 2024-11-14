@@ -30,6 +30,9 @@ class MainActivity : AppCompatActivity() {
         }
         if (vip == true) saludo += "Te queremos mucho"
         else saludo += "Quieres ser vip? paga la cuota"
+        mostrar_saldo()
+        ingresar_dinero(50.40f)
+        retirar_dinero(40.30f)
         var dia = fecha.subSequence(0, 2).toString().toInt()
         if (dia == 1) ingresar_sueldo()
 
@@ -67,5 +70,17 @@ class MainActivity : AppCompatActivity() {
         println("Se ha ingresado tu sueldo de $sueldo $moneda")
         mostrar_saldo()
     }
+    fun ingresar_dinero(cantidad: Float){
+        saldo += cantidad
+        println("Se ha ingresado tu sueldo de $cantidad $moneda")
+        mostrar_saldo()
+    }
+    fun retirar_dinero(cantidad: Float){
+        saldo -= cantidad
+        println("Se ha retirado tu sueldo de $cantidad $moneda")
+        mostrar_saldo()
+    }
+
+
 }
 
