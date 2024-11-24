@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
         const val moneda = "COL"
 
     }
+
     var saldo: Float = 300.54f
     var sueldo: Float = 764.82f
     var entero: Int = 12
@@ -33,6 +34,8 @@ class MainActivity : AppCompatActivity() {
         mostrar_saldo()
         ingresar_dinero(50.40f)
         retirar_dinero(40.30f)
+        retirar_dinero(40.30f)
+        retirar_dinero(2040.30f)
         var dia = fecha.subSequence(0, 2).toString().toInt()
         if (dia == 1) ingresar_sueldo()
 
@@ -62,25 +65,34 @@ class MainActivity : AppCompatActivity() {
         mostrar_saldo()
     }
 
-    fun mostrar_saldo(){
+    fun mostrar_saldo() {
         println("Tienes $saldo $moneda")
     }
-    fun ingresar_sueldo(){
+
+    fun ingresar_sueldo() {
         saldo += sueldo
         println("Se ha ingresado tu sueldo de $sueldo $moneda")
         mostrar_saldo()
     }
-    fun ingresar_dinero(cantidad: Float){
+
+    fun ingresar_dinero(cantidad: Float) {
         saldo += cantidad
         println("Se ha ingresado tu sueldo de $cantidad $moneda")
         mostrar_saldo()
     }
-    fun retirar_dinero(cantidad: Float){
-        saldo -= cantidad
+
+    fun retirar_dinero(cantidad: Float) {
+        if (verificarCantidad(cantidad)){
+            saldo -= cantidad
         println("Se ha retirado tu sueldo de $cantidad $moneda")
         mostrar_saldo()
     }
+    else println("Cantidad superior al saldo. Imposible realizar la operación")
+}
 
-
+    fun verificarCantidad(cantidad_a_retirar: Float): Boolean{
+        if (cantidad_a_retirar > saldo) return false
+        else return true
+    }
 }
 
