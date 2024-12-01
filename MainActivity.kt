@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
 
         println("Numero de clientes: ${clientes.size}")
 
-        var divisas: List<String> = listOf("USD", "EUR", "COL")
+        var divisas: List<String> = listOf("COL", "EUR", "USD")
         println(divisas)
 
         var bolsa: MutableList<String> = mutableListOf("Coca-cola", "Amazon", "Adidas", "Pfizer")
@@ -95,7 +95,8 @@ class MainActivity : AppCompatActivity() {
         bolsa.add("Nvidia")
         println(bolsa)
 
-        bolsa.removeAt(2)
+        bolsa.removeAt(1)
+        println(bolsa)
 
         println(bolsa.first())
         println(bolsa.last())
@@ -104,10 +105,41 @@ class MainActivity : AppCompatActivity() {
 
         bolsa.clear()
         println(bolsa)
-
-        println(bolsa.none())
         println(bolsa.firstOrNull())
+        println(bolsa.none())
 
+        bolsa = mutableListOf("Coca-Cola", "Adidas", "Amazon", "Pfizer", "Nvidia", "Adobe")
+       var mapa : Map<Int, String> = mapOf(
+           1 to "España",
+           2 to "Mexico",
+           3 to "Colombia"
+       )
+        println(mapa)
+
+        var inversiones = mutableMapOf<String, Float>()
+        println(inversiones)
+
+        var empresa: String? = null
+        mostrar_saldo()
+
+        var cantidad_a_invertir = 90f
+        var index = 0
+
+
+        while(saldo >= cantidad_a_invertir) {
+            empresa = bolsa.elementAtOrNull(index)
+            if (empresa != null) {
+                saldo -= cantidad_a_invertir
+                println("se ha invertido $cantidad_a_invertir $moneda en $empresa")
+                inversiones.put(empresa, cantidad_a_invertir)
+
+            }
+            else break
+            index++
+
+        }
+
+        mostrar_saldo()
         var dia = fecha.subSequence(0, 2).toString().toInt()
         if (dia == 1) ingresar_sueldo()
 
